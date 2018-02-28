@@ -5,7 +5,7 @@ Routes and views for the flask application.
 from datetime import datetime
 from flask import render_template
 from reflector_backend import app
-from reflector_backend.api import routes
+from reflector_backend.api import *
 
 @app.route('/')
 @app.route('/home')

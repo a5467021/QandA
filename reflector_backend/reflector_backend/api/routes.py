@@ -4,7 +4,7 @@ Customized RESTful api routes.
 
 import json
 from flask import request, make_response
-from reflector_backend.views import *
+from reflector_backend.views import app
 from reflector_backend.api.process import *
 
 
