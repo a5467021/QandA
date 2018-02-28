@@ -5,11 +5,11 @@ Functions interacting with database.
 import pymysql
 
 
-host = "192.168.114.128";
-port = 3306;
-db = "devdb";
-user = "dev";
-password = "dev0123";
+host = "192.168.114.128"; # SQL server host
+port = 3306; # SQL server port
+db = "devdb"; # database name
+user = "dev"; # user name used to log into the database
+password = "dev0123"; # password for the user
 CATEGORY_NAME = {
     1: "music", #音乐
     2: "movie", #电影
@@ -31,7 +31,6 @@ def connect():
 def GetQuestion(question = {'category': 0, 'num': 0}):
     if question['category'] == 0 or question['num'] == 0: # if program enters this branch, end the function in an expected way
         return '';
-    # return "{0}.{1}".format(CATEGORY_NAME[question['category']], question['num']); # for debug
     conn = connect(); # or else we will query the database and return the question here
     cur = conn.cursor();
     command = "select description from {0} where id=%s".format(CATEGORY_NAME[question['category']]);

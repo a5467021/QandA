@@ -16,7 +16,7 @@ def pack(data = ''): # solves the access-control problem and declares the type o
     res.headers['Access-Control-Allow-Headers'] = 'x-requested-with,content-type'; 
     return res;
 
-@app.route('/api/question', methods = ['GET'])
+@app.route('/api/question', methods = ['GET']) # test page for post action using FORM
 def api_question_test():
     return '''
            <form action="/api/question" method="post">
@@ -32,11 +32,11 @@ def api_question_test():
            </form>
            ''';
 
-@app.route('/api/question', methods = ['POST'])
+@app.route('/api/question', methods = ['POST']) # post action, returns the random questions
 def api_question():
-    if request.form.get('type') == 'test':
+    if request.form.get('type') == 'test': # use FORM for debug, 'type' as 'test' 
         category = request.form.getlist('category');
-    else:
+    else: # use APPLICATION/JSON to interact with front-end
         form = json.loads(request.data);
         category = form['category'];
     return pack(json.dumps(GetQuestion(category)));

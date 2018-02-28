@@ -46,32 +46,34 @@ CATEGORY_NUMBER = {
 
 
 def GetQuestion(categories = []):
-    if categories == []:
-        for n in range(0,4):
+    amount = len(categories);
+    if categories == []: # empty categories implies a new user
+        for n in range(0,4): # so we random questions of different categories
             t = random.randint(1, CATEGORIES_AMOUNT);
             while t in categories:
                 t = random.randint(1, CATEGORIES_AMOUNT);
             categories.append(t);
-    elif len(categories) > 4:
-        cat = categories[:];
-        categories.clear();
-        amount = len(cat);
-        for n in range(0, 4):
-            t = random.randint(1, amount);
-            categories.append(CATEGORY_NUMBER[cat[t - 1]]);
-    elif len(categories) < 4:
-        while len(categories) < 4:
-            categories.append(categories[random.randint(1, len(categories)) - 1]);
-        for i in range(0, 4):
+    else:
+        for i in range(0, amount):
             categories[i] = CATEGORY_NUMBER[categories[i]];
-    print(categories);
+        if amount > 4: # when user's interests are more than 4
+            cat = categories[:]; # we randomly generate 4 questions of different categories
+            categories.clear();
+            for n in range(0, 4):
+                t = random.randint(1, amount);
+                while t in categories:
+                    t = random.randint(1, amount);
+                categories.append(cat[t - 1]);
+        elif len(categories) < 4: # when user's interests are less than 4
+            while len(categories) < 4: # we randomly generate questions in his interests to make questions 4
+                categories.append(categories[random.randint(1, len(categories)) - 1]);
     question = {};
     n = 1;
     for category in categories:
-        title = 'ques{0}'.format(n);
+        title = 'ques{0}'.format(n); # make the response structure
         question[title] = {};
-        num = random.randint(1, QUESTIONS_AMOUNT[category]);
-        question[title]['description'] = dbIO.GetQuestion({'category': category, 'num': num});
+        num = random.randint(1, QUESTIONS_AMOUNT[category]); # random a picture
+        question[title]['description'] = dbIO.GetQuestion({'category': category, 'num': num}); # get the question from database
         question[title]['image'] = '/static/reflector/' + CATEGORY_NAME[category] + '/' + str(random.randint(1, IMAGES_AMOUNT[category])) + '.jpg';
         question[title]['category'] = CATEGORY_NAME[category];
         n += 1;
