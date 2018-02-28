@@ -10,7 +10,7 @@ CATEGORIES_AMOUNT = 7;
 QUESTIONS_AMOUNT = {
     1: 20,
     2: 23,
-    3: 15,
+    3: 14,
     4: 19,
     5: 16,
     6: 9,
@@ -45,14 +45,25 @@ CATEGORY_NUMBER = {
     };
 
 
-def GetQuestion(categories = [0]):
-    if categories == [0]:
-        categories.pop();
+def GetQuestion(categories = []):
+    if categories == []:
         for n in range(0,4):
             t = random.randint(1, CATEGORIES_AMOUNT);
             while t in categories:
                 t = random.randint(1, CATEGORIES_AMOUNT);
             categories.append(t);
+    elif len(categories) > 4:
+        cat = categories[:];
+        categories.clear();
+        amount = len(cat);
+        for n in range(0, 4):
+            t = random.randint(1, amount);
+            categories.append(CATEGORY_NUMBER[cat[t - 1]]);
+    elif len(categories) < 4:
+        while len(categories) < 4:
+            categories.append(categories[random.randint(1, len(categories)) - 1]);
+        for i in range(0, 4):
+            categories[i] = CATEGORY_NUMBER[categories[i]];
     print(categories);
     question = {};
     n = 1;
