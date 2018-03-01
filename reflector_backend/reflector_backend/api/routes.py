@@ -26,6 +26,7 @@ def api_question_test():
                <input type="checkbox" name="category" value="阅读">阅读</input>
                <input type="checkbox" name="category" value="游戏">游戏</input>
                <input type="checkbox" name="category" value="时事">时事</input>
+               <input type="checkbox" name="category" value="动画">动画</input>
                <input type="checkbox" name="category" value="其他">其他</input>
                <input type="hidden" name="type" value="test"></input>
                <input type="submit" value="提交"></input>

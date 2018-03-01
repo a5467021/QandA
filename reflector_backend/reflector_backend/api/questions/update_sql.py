@@ -16,7 +16,8 @@ CATEGORY_NAME = {
     4: "reading", #阅读
     5: "game", #游戏
     6: "affair", #时事
-    7: "other" #其他
+    7: "anime", #动画
+    8: "other" #其他
     };
 
 def connect():
@@ -32,7 +33,7 @@ cur = conn.cursor();
 ins = 0;
 for category in CATEGORY_NAME:
     if os.path.exists(CATEGORY_NAME[category] + '.txt'):
-        with open(CATEGORY_NAME[category] + '.txt', 'r') as f:
+        with open(CATEGORY_NAME[category] + '.txt', 'r', encoding = 'utf-8') as f:
             print('\ncategory', CATEGORY_NAME[category], '\n');
             for line in f:
                 line = line.replace('\n', '');

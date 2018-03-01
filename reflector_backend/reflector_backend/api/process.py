@@ -6,7 +6,7 @@ import json
 import random
 from reflector_backend.api import dbIO
 
-CATEGORIES_AMOUNT = 7;
+CATEGORIES_AMOUNT = 8;
 QUESTIONS_AMOUNT = {
     1: 20,
     2: 23,
@@ -14,7 +14,8 @@ QUESTIONS_AMOUNT = {
     4: 19,
     5: 16,
     6: 9,
-    7: 20
+    7: 20,
+    8: 20
     };
 IMAGES_AMOUNT = {
     1: 22,
@@ -23,7 +24,8 @@ IMAGES_AMOUNT = {
     4: 23,
     5: 21,
     6: 15,
-    7: 23
+    7: 0,
+    8: 23
     };
 CATEGORY_NAME = {
     1: "音乐", #music
@@ -32,7 +34,8 @@ CATEGORY_NAME = {
     4: "阅读", #reading
     5: "游戏", #game
     6: "时事", #affair
-    7: "其他" #other
+    7: "动画", #anime
+    8: "其他" #other
     };
 CATEGORY_NUMBER = {
     "音乐": 1, #music
@@ -41,7 +44,8 @@ CATEGORY_NUMBER = {
     "阅读": 4, #reading
     "游戏": 5, #game
     "时事": 6, #affair
-    "其他": 7 #other
+    "动画": 7, #anime
+    "其他": 8 #other
     };
 
 
@@ -74,7 +78,10 @@ def GetQuestion(categories = []):
         question[title] = {};
         num = random.randint(1, QUESTIONS_AMOUNT[category]); # random a picture
         question[title]['description'] = dbIO.GetQuestion({'category': category, 'num': num}); # get the question from database
-        question[title]['image'] = '/static/reflector/' + CATEGORY_NAME[category] + '/' + str(random.randint(1, IMAGES_AMOUNT[category])) + '.jpg';
+        if IMAGES_AMOUNT[category] < 1:
+            question[title]['image'] = '/static/reflector/default.jpg';
+        else:
+            question[title]['image'] = '/static/reflector/' + CATEGORY_NAME[category] + '/' + str(random.randint(1, IMAGES_AMOUNT[category])) + '.jpg';
         question[title]['category'] = CATEGORY_NAME[category];
         n += 1;
     return question;

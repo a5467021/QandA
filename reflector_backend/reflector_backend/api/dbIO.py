@@ -17,7 +17,8 @@ CATEGORY_NAME = {
     4: "reading", #阅读
     5: "game", #游戏
     6: "affair", #时事
-    7: "other" #其他
+    7: "anime", #动画
+    8: "other" #其他
     };
 
 def connect():
