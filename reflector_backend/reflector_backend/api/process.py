@@ -34,7 +34,7 @@ CATEGORY_NAME = {
     4: "阅读", #reading
     5: "游戏", #game
     6: "时事", #affair
-    7: "动画", #anime
+    7: "动漫", #acg
     8: "其他" #other
     };
 CATEGORY_NUMBER = {
@@ -44,7 +44,7 @@ CATEGORY_NUMBER = {
     "阅读": 4, #reading
     "游戏": 5, #game
     "时事": 6, #affair
-    "动画": 7, #anime
+    "动漫": 7, #acg
     "其他": 8 #other
     };
 

@@ -17,7 +17,7 @@ CATEGORY_NAME = {
     4: "reading", #阅读
     5: "game", #游戏
     6: "affair", #时事
-    7: "anime", #动画
+    7: "acg", #动漫
     8: "other" #其他
     };
 
