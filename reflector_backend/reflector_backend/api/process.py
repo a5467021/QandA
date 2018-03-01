@@ -24,7 +24,7 @@ IMAGES_AMOUNT = {
     4: 23,
     5: 21,
     6: 15,
-    7: 0,
+    7: 32,
     8: 23
     };
 CATEGORY_NAME = {
