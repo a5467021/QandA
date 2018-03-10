@@ -9,12 +9,12 @@ from reflector_backend.api.process import *
 
 
 def pack(data = ''): # solves the access-control problem and declares the type of data
-    res = make_response(data);
-    res.mimetype = 'application/json';
-    res.headers['Access-Control-Allow-Origin'] = '*';
-    res.headers['Access-Control-Allow-Methods'] = 'GET, POST';
+    res = make_response(data)
+    res.mimetype = 'application/json'
+    res.headers['Access-Control-Allow-Origin'] = '*'
+    res.headers['Access-Control-Allow-Methods'] = 'GET, POST'
     res.headers['Access-Control-Allow-Headers'] = 'x-requested-with,content-type'; 
-    return res;
+    return res
 
 @app.route('/api/question', methods = ['GET']) # test page for post action using FORM
 def api_question_test():
@@ -31,13 +31,13 @@ def api_question_test():
                <input type="hidden" name="type" value="test"></input>
                <input type="submit" value="提交"></input>
            </form>
-           ''';
+           '''
 
 @app.route('/api/question', methods = ['POST']) # post action, returns the random questions
 def api_question():
     if request.form.get('type') == 'test': # use FORM for debug, 'type' as 'test' 
-        category = request.form.getlist('category');
+        category = request.form.getlist('category')
     else: # use APPLICATION/JSON to interact with front-end
-        form = json.loads(request.data);
-        category = form['category'];
-    return pack(json.dumps(GetQuestion(category)));
+        form = json.loads(request.data)
+        category = form['category']
+    return pack(json.dumps(GetQuestion(category)))
