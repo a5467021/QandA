@@ -162,6 +162,3 @@ $RECYCLE.BIN/
 
 # VisualStudioCode
 .vscode
-
-# Customization
-static/reflector/*/*.jpg
